@@ -8,6 +8,7 @@ Install the packages using npm or yarn on both client and server.
 
 ```bash
 yarn install or yarn 
+```
 
 ### Technologies used
 - React js  
