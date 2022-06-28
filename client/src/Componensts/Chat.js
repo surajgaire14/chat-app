@@ -23,6 +23,7 @@ const ChatPanel = style.div`
   width: 85%;
   display: flex;
   flex-direction: column;
+  padding:5px;
 `;
 
 const ChatContainer = style.div.attrs({
@@ -66,10 +67,9 @@ function Chat() {
   const { room, username } = data;
   const { messages, sendMessage, users } = useChat(room, username);
 
-  let filterUser = users.filter((user,i) => {
-    return user !== null && users.indexOf(user)  === i
-  })
-  console.log(filterUser)
+  let filterUser = users.filter((user, i) => {
+    return user !== null && users.indexOf(user) === i;
+  });
 
   const handleSendMessage = () => {
     if (message !== "") {
@@ -84,9 +84,13 @@ function Chat() {
         <h3>Room</h3>
         <p style={{ textAlign: "left" }}>Room:{room}</p>
         <h3>Users</h3>
-          {filterUser.map((user,i) => {
-            return <p key={i} style={{textAlign:"left"}} >{user}</p>
-          })}
+        {filterUser.map((user, i) => {
+          return (
+            <p key={i} style={{ textAlign: "left" }}>
+              {user}
+            </p>
+          );
+        })}
       </SideBar>
       <ChatPanel>
         <ChatContainer>
@@ -118,7 +122,12 @@ function Chat() {
           })}
         </ChatContainer>
         <ButtonArea>
-          <Input onChange={(e) => setMessage(e.target.value)} value={message} />
+          <Input
+            onChange={(e) => setMessage(e.target.value)}
+            value={message}
+            placeholder="Aa"
+            onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+          />
           <Button onClick={handleSendMessage}>Send</Button>
         </ButtonArea>
       </ChatPanel>

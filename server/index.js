@@ -21,8 +21,12 @@ io.on("connection", (socket) => {
     const { roomId,username } = socket.handshake.query;
     socket.join(roomId);
 
-    username !== "undefined" && users.push(username)
-  
+
+    // console.log(users)
+    let filterUser = users.filter((user,i) => {
+      return user !== null  && user !== undefined && users.indexOf(user) === i
+    })
+
     // Listen for new messages
     socket.on("newMessages", (data) => {
       io.in(roomId).emit("newMessages", data);
