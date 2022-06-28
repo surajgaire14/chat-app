@@ -66,10 +66,14 @@ function Chat() {
   const data = queryString.parse(location.search);
   const { room, username } = data;
   const { messages, sendMessage, users } = useChat(room, username);
+  console.log(users)
+  
 
   let filterUser = users.filter((user, i) => {
     return user !== null && users.indexOf(user) === i;
   });
+
+  console.log(filterUser)
 
   const handleSendMessage = () => {
     if (message !== "") {

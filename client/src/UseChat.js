@@ -20,13 +20,14 @@ const useChat = (roomId,username) => {
 
     });
     socketRef.current.on("roomData", (data) => {
+      console.log(data)
       setUsers(data);
     });
 
     return () => {
       socketRef.current.disconnect();
     };
-  }, [roomId]);
+  }, [roomId,username]);
 
   const sendMessage = (messageBody, username) => {
     socketRef.current.emit("newMessages", {
