@@ -73,7 +73,6 @@ function Chat() {
     return user !== null && users.indexOf(user) === i;
   });
 
-  console.log(filterUser)
 
   const handleSendMessage = () => {
     if (message !== "") {

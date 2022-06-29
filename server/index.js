@@ -25,10 +25,10 @@ io.on("connection", (socket) => {
 
     // Listen for new messages
     socket.on("newMessages", (data) => {
-      io.in(roomId).emit("newMessages", data);
-    });
-    
-    io.emit("roomData",users)
+      io.sockets.in(roomId).emit("newMessages", data);
+    });    
+
+      io.sockets.in(roomId).emit("roomData",users)
     
   socket.on("disconnect", () => {
     socket.leave(roomId)
